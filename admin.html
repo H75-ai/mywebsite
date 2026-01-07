@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{font-family:Arial;padding:20px}
+input,button{padding:8px;margin:5px}
+table{width:100%;border-collapse:collapse;margin-top:20px}
+th,td{border:1px solid #ccc;padding:8px;text-align:center}
+</style>
+</head>
+
+<body>
+
+<h2>Admin Login</h2>
+
+<div id="loginBox">
+<input id="username" placeholder="Username"><br>
+<input id="password" type="password" placeholder="Password"><br>
+<button onclick="login()">Login</button>
+</div>
+
+<div id="adminPanel" style="display:none">
+<h2>Orders</h2>
+<table>
+<tr>
+<th>Order ID</th>
+<th>Product</th>
+<th>Payment</th>
+<th>Status</th>
+</tr>
+<tbody id="ordersList"></tbody>
+</table>
+</div>
+
+<script>
+function login(){
+  if(username.value==="admin" && password.value==="1234"){
+    loginBox.style.display="none";
+    adminPanel.style.display="block";
+    loadOrders();
+  }else{
+    alert("Wrong login");
+  }
+}
+
+function loadOrders(){
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+  orders.forEach(o=>{
+    ordersList.innerHTML += `
+      <tr>
+        <td>${o.id}</td>
+        <td>${o.product}</td>
+        <td>${o.payment}</td>
+        <td>${o.status}</td>
+      </tr>
+    `;
+  });
+}
+</script>
+
+</body>
+</html>

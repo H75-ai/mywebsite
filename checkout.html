@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Checkout</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{font-family:Arial;text-align:center;padding:30px}
+button{
+  padding:12px 25px;
+  background:green;
+  color:white;
+  border:none;
+  border-radius:6px;
+  cursor:pointer
+}
+</style>
+</head>
+
+<body>
+
+<h2>Order Confirmation</h2>
+<div id="orderDetails"></div>
+
+<button onclick="confirmOrder()">Confirm Order</button>
+
+<script>
+const order = JSON.parse(localStorage.getItem("currentOrder"));
+
+document.getElementById("orderDetails").innerHTML = `
+<p><b>Order ID:</b> ${order.id}</p>
+<p><b>Product:</b> ${order.product}</p>
+<p><b>Payment:</b> ${order.payment}</p>
+`;
+
+function confirmOrder(){
+  alert("✅ Order placed successfully!");
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
