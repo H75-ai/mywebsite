@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Mdern and Minimalist</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{margin:0;font-family:Arial;background:#fff8dc}
+header{background:gold;padding:20px;text-align:center}
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  padding:20px;
+}
+.product{
+  background:#fff;
+  padding:15px;
+  border-radius:10px;
+  text-align:center;
+  box-shadow:0 4px 10px rgba(0,0,0,.2)
+}
+button{
+  padding:10px;
+  background:#fb641b;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  margin-top:10px
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>modern and minimalist</h1>
+<p>Cash on Delivery Available</p>
+</header>
+
+<div class="products">
+
+<div class="product">
+<img src="images/product1.jpg" width="200">
+<h3>Designer Ring</h3>
+<button onclick="buyNow('Designer Ring')">Buy Now</button>
+</div>
+
+<div class="product">
+<img src="images/product2.jpg" width="200">
+<h3>Traditional Necklace</h3>
+<button onclick="buyNow('Traditional Necklace')">Buy Now</button>
+</div>
+
+<div class="product">
+<img src="images/product3.jpg" width="200">
+<h3>Designer Bangles</h3>
+<button onclick="buyNow('Designer Bangles')">Buy Now</button>
+</div>
+
+<div class="product">
+<img src="images/product4.jpg" width="200">
+<h3>Bridal Jhumka</h3>
+<button onclick="buyNow('Bridal Jhumka')">Buy Now</button>
+</div>
+
+</div>
+
+<script>
+function buyNow(product){
+  const order = {
+    id: "ORD" + Date.now(),
+    product: product,
+    payment: "Cash on Delivery",
+    status: "Pending"
+  };
+
+  let orders = JSON.parse(localStorage.getItem("orders")) || [];
+  orders.push(order);
+
+  localStorage.setItem("orders", JSON.stringify(orders));
+  localStorage.setItem("currentOrder", JSON.stringify(order));
+
+  window.location.href = "checkout.html";
+}
+</script>
+
+</body>
+</html>
